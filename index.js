@@ -6,10 +6,16 @@ const cors = require("cors");
 app.use(express.json());
 app.use(cors());
 
-app.get("/api/data", async (req, res) => {
+app.post("/api/data", async (req, res) => {
+  const prompt = req.body.prompt;
+  console.log("Prompt:", prompt);
+
   try {
+    console.log("Fetching data...");
     // Replace 'http://external-http-api.com/data' with the actual API endpoint
-    const response = await axios.get("http://161.35.232.34:3000/predict");
+    const response = await axios.post("http://161.35.232.34:3000/predict", {
+      prompt: prompt,
+    });
     res.json(response.data);
   } catch (error) {
     console.error("Failed to fetch data:", error);
@@ -17,7 +23,7 @@ app.get("/api/data", async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
