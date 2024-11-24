@@ -13,7 +13,7 @@ app.post("/api/data", async (req, res) => {
   try {
     console.log("Fetching data...");
     // Replace 'http://external-http-api.com/data' with the actual API endpoint
-    const response = await axios.post("http://161.35.232.34:3000/predict", {
+    const response = await axios.post("http://64.227.188.230:3000/predict", {
       prompt: prompt,
     });
     res.json(response.data);
